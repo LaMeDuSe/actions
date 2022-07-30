@@ -8,9 +8,9 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.actor == 'bot-anik'
     uses: ./.github/workflows/lint.yml
 
-#  build:
-#    if: github.ref == 'refs/heads/main' && github.actor == 'bot-anik'
-#    uses: ./.github/workflows/build.yml
+  build:
+    if: github.ref == 'refs/heads/main' && github.actor == 'bot-anik'
+    uses: ./.github/workflows/build.yml
 
   perfom-release:
     if: github.ref == 'refs/heads/main' && github.actor == 'bot-anik'
