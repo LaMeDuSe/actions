@@ -5,15 +5,15 @@ on:
 
 jobs:
   lint:
-    if: github.ref == 'refs/heads/main' && github.actor == 'bot-anik'
+    if: github.ref == 'refs/heads/main' && github.actor == 'lamedusebot'
     uses: ./.github/workflows/lint.yml
 
   build:
-    if: github.ref == 'refs/heads/main' && github.actor == 'bot-anik'
+    if: github.ref == 'refs/heads/main' && github.actor == 'lamedusebot'
     uses: ./.github/workflows/build.yml
 
   perfom-release:
-    if: github.ref == 'refs/heads/main' && github.actor == 'bot-anik'
+    if: github.ref == 'refs/heads/main' && github.actor == 'lamedusebot'
     needs:
       - lint
       - build
