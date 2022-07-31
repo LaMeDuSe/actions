@@ -4,17 +4,36 @@ on:
   workflow_dispatch:
 
 jobs:
+  check_perms:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if organization member
+        id: is_organization_member
+        uses: jamessingleton/is-organization-member@v1
+        with:
+          organization: lameduse
+          username: ${{ github.actor }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Comment
+        if: |
+          steps.is_organization_member.outputs.result == false
+        run: exit 1
   lint:
-    if: github.ref == 'refs/heads/main' && github.actor == 'lamedusebot'
+    if: github.ref == 'refs/heads/main' && contains(fromJson('["", "synchronize"]'), github.event.action)
+    needs: 
+      - check_perms
     uses: ./.github/workflows/lint.yml
 
   build:
     if: github.ref == 'refs/heads/main' && github.actor == 'lamedusebot'
+    needs: 
+      - check_perms
     uses: ./.github/workflows/build.yml
 
   perfom-release:
     if: github.ref == 'refs/heads/main' && github.actor == 'lamedusebot'
     needs:
+      - check_perms
       - lint
       - build
     runs-on: ubuntu-20.04
