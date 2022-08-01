@@ -1,0 +1,15 @@
+name: Follow contributor (Issue Comment)
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  follow-user:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Follow user
+        uses: okp4/follow-contributor-action@v1.0.0
+        with:
+          username: ${{ github.event.sender.login }}
+          token: ${{ secrets.LAMEDUSE_TOKEN }}
