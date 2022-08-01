@@ -53,8 +53,8 @@ jobs:
             @semantic-release/git
             @semantic-release/npm
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GIT_AUTHOR_NAME: LaMeDuSe Bot
-          GIT_AUTHOR_EMAIL: lamedusegroup@gmail.com
-          GIT_COMMITTER_NAME: LaMeDuSe Bot
-          GIT_COMMITTER_EMAIL: lamedusegroup@gmail.com
+          GITHUB_TOKEN: ${{ secrets.LAMEDUSE_TOKEN }}
+          GIT_AUTHOR_NAME: ${{ secrets.LAMEDUSE_BOT_GIT_AUTHOR_NAME }}
+          GIT_AUTHOR_EMAIL: ${{ secrets.LAMEDUSE_BOT_GIT_AUTHOR_EMAIL }}
+          GIT_COMMITTER_NAME: ${{ secrets.LAMEDUSE_BOT_GIT_COMMITTER_NAME }}
+          GIT_COMMITTER_EMAIL: ${{ secrets.LAMEDUSE_BOT_GIT_COMMITTER_EMAIL }}
