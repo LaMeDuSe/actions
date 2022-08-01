@@ -19,19 +19,19 @@ jobs:
           steps.is_organization_member.outputs.result == false
         run: exit 1
   lint:
-    if: github.ref == 'refs/heads/main' && contains(fromJson('["", "synchronize"]'), github.event.action)
+    if: github.ref == 'refs/heads/main'
     needs:
       - check_perms
     uses: ./.github/workflows/lint.yml
 
   build:
-    if: github.ref == 'refs/heads/main' && github.actor == 'lamedusebot'
+    if: github.ref == 'refs/heads/main'
     needs:
       - check_perms
     uses: ./.github/workflows/build.yml
 
   perfom-release:
-    if: github.ref == 'refs/heads/main' && github.actor == 'lamedusebot'
+    if: github.ref == 'refs/heads/main'
     needs:
       - check_perms
       - lint
