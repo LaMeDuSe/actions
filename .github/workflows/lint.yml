@@ -73,6 +73,7 @@ jobs:
             `chore/**`               | Other changes that don't modify source
           fail_if_invalid_branch_name: "true"
           ignore_branch_pattern: "main"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Close non-compliant branch
         if: ${{ failure() }}
         uses: codelytv/no-pull-requests@v1
