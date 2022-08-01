@@ -79,3 +79,5 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           message: 🙅 Closing the PR because it does not respect naming conventions. Edit the branch name and submit a new PR.
+    env:
+      GITHUB_TOKEN: ${{ secrets.LAMEDUSE_TOKEN }}
