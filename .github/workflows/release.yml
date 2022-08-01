@@ -20,13 +20,13 @@ jobs:
         run: exit 1
   lint:
     if: github.ref == 'refs/heads/main' && contains(fromJson('["", "synchronize"]'), github.event.action)
-    needs: 
+    needs:
       - check_perms
     uses: ./.github/workflows/lint.yml
 
   build:
     if: github.ref == 'refs/heads/main' && github.actor == 'lamedusebot'
-    needs: 
+    needs:
       - check_perms
     uses: ./.github/workflows/build.yml
 
