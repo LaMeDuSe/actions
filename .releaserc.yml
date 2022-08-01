@@ -2,7 +2,7 @@ branches:
   - main
 
 plugins:
-  - - "@semantic-release/commit-analyzer"
+  - "@semantic-release/commit-analyzer"
     - releaseRules:
         - type: build
           release: patch
@@ -10,7 +10,6 @@ plugins:
           release: patch
         - type: chore
           release: patch
-  - "@semantic-release/commit-analyzer"
   - "@semantic-release/release-notes-generator"
   - - "@semantic-release/changelog"
     - changelogFile: CHANGELOG.md
