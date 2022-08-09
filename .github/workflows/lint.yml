@@ -73,11 +73,5 @@ jobs:
             `chore/**`               | Other changes that don't modify source
           fail_if_invalid_branch_name: "true"
           ignore_branch_pattern: "main"
-      - name: Close non-compliant branch
-        if: ${{ failure() }}
-        uses: codelytv/no-pull-requests@v1
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          message: 🙅 Closing the PR because it does not respect naming conventions. Edit the branch name and submit a new PR.
     env:
       GITHUB_TOKEN: ${{ secrets.LAMEDUSE_TOKEN }}
