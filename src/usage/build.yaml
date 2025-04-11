@@ -1,0 +1,27 @@
+name: Build
+
+on:
+  workflow_call:
+
+  push:
+    branches: [main]
+
+  pull_request:
+    branches: [main]
+
+  release:
+    types: [published]
+
+  workflow_dispatch:
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-push-docker:
+    uses: lameduse/actions/.github/workflows/build-push-docker.yml
+    secrets: inherit
+  build-push-node:
+    uses: lameduse/actions/.github/workflows/build-push-node.yml
+    secrets: inherit

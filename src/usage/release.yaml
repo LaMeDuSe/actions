@@ -5,7 +5,7 @@ on:
 
 jobs:
   check_perms:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Check if organization member
         id: is_organization_member
@@ -23,6 +23,7 @@ jobs:
     needs:
       - check_perms
     uses: ./.github/workflows/lint.yml
+    secrets: inherit
 
   build:
     if: github.ref == 'refs/heads/main'

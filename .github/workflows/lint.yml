@@ -2,12 +2,10 @@ name: Lint
 
 on:
   workflow_call:
-
-  push:
-    branches: [main]
-
-  pull_request:
-    branches: [main]
+    secrets:
+      LAMEDUSE_TOKEN:
+        required: true
+        description: 'Lameduse token'
 
   workflow_dispatch:
 

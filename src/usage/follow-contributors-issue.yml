@@ -1,0 +1,10 @@
+name: Follow contributor (Issue)
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  follow-user:
+    uses: lameduse/actions/.github/workflows/follow-contributors.yml@main
+    secrets: inherit

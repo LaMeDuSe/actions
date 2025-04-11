@@ -23,6 +23,7 @@ jobs:
     needs:
       - check_perms
     uses: ./.github/workflows/lint.yml
+    secrets: inherit
 
   build:
     if: github.ref == 'refs/heads/main'

@@ -1,0 +1,57 @@
+name: Build
+
+on:
+  workflow_call:
+    secrets:
+      LAMEDUSE_NPM_HOSTED_REGISTRY_USERNAME:
+        required: true
+        description: 'Lameduse registry username'
+      LAMEDUSE_NPM_HOSTED_REGISTRY_TOKEN:
+        required: true
+        description: 'Lameduse registry token'
+    # vars:
+    #   LAMEDUSE_NPM_HOSTED_REGISTRY:
+    #     required: true
+    #     description: 'Lameduse registry URL'
+
+env:
+  REGISTRY: ${{ vars.LAMEDUSE_REGISTRY }}
+  IMAGE_NAME: ${{ github.repository }}
+
+concurrency:
+  group: build-push-node-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+   publish-npm-package:
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        registry:
+          - url: ${{ vars.LAMEDUSE_NPM_HOSTED_REGISTRY }}
+            auth-token-secret: LAMEDUSE_NPM_HOSTED_REGISTRY_PASSWORD
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Setup node environment (for publishing)
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+          registry-url: ${{ matrix.registry.url }}
+          scope: "@lameduse"
+
+      - name: Publish package
+        run: |
+          yarn && yarn rollup || exit 1
+          DATE=$(date +%Y%m%d%H%M%S)
+          publish=(yarn publish --access=public --no-git-tag-version --non-interactive)
+          if [[ $GITHUB_REF == refs/tags/v* ]]; then
+            publish+=(--tag latest)
+          else
+            publish+=(--prerelease --preid next.$DATE --tag next)
+          fi
+          echo "🚀 Publishing npm package with following command line: ${publish[@]}"
+          "${publish[@]}"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets[matrix.registry.auth-token-secret] }}

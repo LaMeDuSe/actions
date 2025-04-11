@@ -1,0 +1,10 @@
+name: Follow contributor (Pull Request)
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  follow-user:
+    uses: lameduse/actions/.github/workflows/follow-contributors.yml@main
+    secrets: inherit
