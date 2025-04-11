@@ -20,8 +20,8 @@ concurrency:
 
 jobs:
   build-push-docker:
-    uses: lameduse/actions/.github/workflows/build-push-docker.yml
+    uses: lameduse/actions/.github/workflows/build-push-docker.yml@main
     secrets: inherit
   build-push-node:
-    uses: lameduse/actions/.github/workflows/build-push-node.yml
+    uses: lameduse/actions/.github/workflows/build-push-node.yml@main
     secrets: inherit
