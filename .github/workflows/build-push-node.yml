@@ -1,4 +1,4 @@
-name: Build
+name: Build Push Node
 
 on:
   workflow_call:
