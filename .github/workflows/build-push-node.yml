@@ -6,7 +6,7 @@ on:
       LAMEDUSE_NPM_HOSTED_REGISTRY_USERNAME:
         required: true
         description: 'Lameduse registry username'
-      LAMEDUSE_NPM_HOSTED_REGISTRY_TOKEN:
+      LAMEDUSE_NPM_HOSTED_REGISTRY_PASSWORD:
         required: true
         description: 'Lameduse registry token'
     # vars:
