@@ -1,0 +1,16 @@
+name: Follow contributor (Push)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  issues:
+    types: [opened]
+  issue_comment:
+    types: [created]
+
+jobs:
+  follow-user:
+    uses: lameduse/actions/.github/workflows/follow-contributors.yaml@main
+    secrets: inherit
