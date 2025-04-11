@@ -24,7 +24,7 @@ concurrency:
 
 jobs:
    publish-npm-package:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         registry:
