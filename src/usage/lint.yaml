@@ -20,5 +20,5 @@ concurrency:
 
 jobs:
   lint:
-    uses: lameduse/actions/.github/workflows/lint.yml@main
+    uses: lameduse/actions/.github/workflows/lint.yaml@main
     secrets: inherit

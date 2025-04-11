@@ -22,14 +22,14 @@ jobs:
     if: github.ref == 'refs/heads/main'
     needs:
       - check_perms
-    uses: ./.github/workflows/lint.yml
+    uses: ./.github/workflows/lint.yaml
     secrets: inherit
 
   build:
     if: github.ref == 'refs/heads/main'
     needs:
       - check_perms
-    uses: ./.github/workflows/build.yml
+    uses: ./.github/workflows/build.yaml
     secrets: inherit
 
   perfom-release:
