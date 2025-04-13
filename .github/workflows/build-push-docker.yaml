@@ -14,7 +14,7 @@ on:
         required: false
         type: string
         description: 'Target directory in the registry'
-        default: ${{ github.repository}}
+        default: 'lameduse'
 
     # vars:
     #   LAMEDUSE_REGISTRY:
@@ -22,7 +22,6 @@ on:
     #     description: 'Lameduse registry URL'
 
 env:
-  REGISTRY: ${{ vars.LAMEDUSE_REGISTRY }}
   IMAGE_NAME: ${{ github.event.inputs.TARGET_DIR }}
 
 concurrency:
