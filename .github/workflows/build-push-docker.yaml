@@ -9,6 +9,13 @@ on:
       LAMEDUSE_REGISTRY_TOKEN:
         required: true
         description: 'Lameduse registry token'
+    inputs:
+      TARGET_DIR:
+        required: false
+        type: string
+        description: 'Target directory in the registry'
+        default: ${{ github.repository}}
+
     # vars:
     #   LAMEDUSE_REGISTRY:
     #     required: true
@@ -16,7 +23,7 @@ on:
 
 env:
   REGISTRY: ${{ vars.LAMEDUSE_REGISTRY }}
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: ${{ github.event.inputs.TARGET_DIR }}
 
 concurrency:
   group: build-push-docker-${{ github.ref }}
