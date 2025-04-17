@@ -14,7 +14,7 @@ on:
         required: false
         type: string
         description: 'Target directory in the registry'
-        default: 'lameduse'
+        default: 'restricted'
 
     # vars:
     #   LAMEDUSE_REGISTRY:
