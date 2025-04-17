@@ -22,7 +22,7 @@ on:
     #     description: 'Lameduse registry URL'
 
 env:
-  IMAGE_NAME: ${{ github.event.inputs.TARGET_DIR }}/${{ github.repository }}
+  IMAGE_NAME: ${{ inputs.TARGET_DIR }}/${{ github.repository }}
   REGISTRY: ${{ vars.LAMEDUSE_REGISTRY }}
 
 concurrency:
