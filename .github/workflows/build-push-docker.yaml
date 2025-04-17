@@ -22,8 +22,8 @@ on:
     #     description: 'Lameduse registry URL'
 
 env:
-  IMAGE_NAME: ${{ github.event.inputs.TARGET_DIR }}
-  REGISTRY: ${{ vars.LAMEDUSE_REGISTRY }}/${{ github.repository }}
+  IMAGE_NAME: ${{ github.event.inputs.TARGET_DIR }}/${{ github.repository }}
+  REGISTRY: ${{ vars.LAMEDUSE_REGISTRY }}
 
 concurrency:
   group: build-push-docker-${{ github.ref }}
