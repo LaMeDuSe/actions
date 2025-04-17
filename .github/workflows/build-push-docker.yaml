@@ -23,7 +23,7 @@ on:
 
 env:
   IMAGE_NAME: ${{ github.event.inputs.TARGET_DIR }}
-  REGISTRY: ${{ vars.LAMEDUSE_REGISTRY }}
+  REGISTRY: ${{ vars.LAMEDUSE_REGISTRY }}/${{ github.repository }}
 
 concurrency:
   group: build-push-docker-${{ github.ref }}
