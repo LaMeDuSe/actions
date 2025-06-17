@@ -1,4 +1,4 @@
-name: Build
+name: Lint
 
 on:
   workflow_call:
@@ -15,21 +15,19 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: build-${{ github.ref }}
+  group: lint-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  build-skip:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Hello build
-        run: echo "Hello Build"
+  lint:
+    uses: lameduse/actions/.github/workflows/lint.yaml@main
+    secrets: inherit
   status-check:
-    name: Build
+    name: Lint
     runs-on: ubuntu-latest
     needs:
-      - build-skip
+      - lint
     if: success()
     steps:
       - name: Final status check
-        run: echo "All builds succeeded"
+        run: echo "All lints succeeded"
