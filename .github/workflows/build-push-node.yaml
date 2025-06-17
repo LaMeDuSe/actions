@@ -23,7 +23,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-   publish-npm-package:
+  publish-npm-package:
     runs-on: ubuntu-latest
     strategy:
       matrix:
