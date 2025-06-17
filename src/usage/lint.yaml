@@ -22,3 +22,36 @@ jobs:
   lint:
     uses: lameduse/actions/.github/workflows/lint.yaml@main
     secrets: inherit
+name: Lint
+
+on:
+  workflow_call:
+
+  push:
+    branches: [main]
+
+  pull_request:
+    branches: [main]
+
+  release:
+    types: [published]
+
+  workflow_dispatch:
+
+concurrency:
+  group: lint-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    uses: lameduse/actions/.github/workflows/lint.yaml@main
+    secrets: inherit
+  status-check:
+    name: Lint
+    runs-on: ubuntu-latest
+    needs:
+      - lint
+    if: success()
+    steps:
+      - name: Final status check
+        run: echo "All builds succeeded"
