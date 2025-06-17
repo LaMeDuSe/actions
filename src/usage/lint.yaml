@@ -54,4 +54,4 @@ jobs:
     if: success()
     steps:
       - name: Final status check
-        run: echo "All builds succeeded"
+        run: echo "All lints succeeded"
