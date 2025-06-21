@@ -46,7 +46,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.LAMEDUSE_TOKEN }}
 
       - name: Release project
         uses: cycjimmy/semantic-release-action@v2
