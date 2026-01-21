@@ -15,6 +15,11 @@ on:
         type: string
         description: 'Target directory in the registry'
         default: 'restricted'
+      DIRECTORIES:
+        required: false
+        type: string
+        description: 'JSON array of directories to build from. Defaults to ["."].'
+        default: '["."] '
 
     # vars:
     #   LAMEDUSE_REGISTRY:
@@ -32,6 +37,10 @@ concurrency:
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        context: ${{ fromJson(inputs.DIRECTORIES) }}
     permissions:
       contents: read
       packages: write
@@ -45,15 +54,27 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ secrets.LAMEDUSE_REGISTRY_USERNAME }}
           password: ${{ secrets.LAMEDUSE_REGISTRY_TOKEN }}
+      - name: Compute Image Name
+        id: compute-image-name
+        env:
+          BASE_IMAGE_NAME: ${{ env.IMAGE_NAME }}
+          CONTEXT: ${{ matrix.context }}
+        run: |
+          if [ "$CONTEXT" = "." ]; then
+            echo "result=$BASE_IMAGE_NAME" >> "$GITHUB_OUTPUT"
+          else
+            SUFFIX=$(basename "$CONTEXT")
+            echo "result=$BASE_IMAGE_NAME/$SUFFIX" >> "$GITHUB_OUTPUT"
+          fi
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/${{ steps.compute-image-name.outputs.result }}
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
-          context: .
+          context: ${{ matrix.context }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
