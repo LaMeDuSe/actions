@@ -43,7 +43,7 @@ jobs:
         run: pip install yamllint
 
       - name: Lint yaml files
-        run: yamllint -d "{extends: default, rules: {line-length: disable, document-start: disable}}" .
+        run: yamllint -d relaxed .
 
       - name: Check for .yml files
         run: |
