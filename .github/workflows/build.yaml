@@ -20,13 +20,13 @@ concurrency:
 
 jobs:
   build-skip:
-    runs-on: ubuntu-latest
+    runs-on: lameduse-runners
     steps:
       - name: Hello build
         run: echo "Hello Build"
   status-check:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: lameduse-runners
     needs:
       - build-skip
     if: success()

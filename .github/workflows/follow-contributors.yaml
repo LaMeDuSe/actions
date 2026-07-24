@@ -8,7 +8,7 @@ on:
 
 jobs:
   follow-user:
-    runs-on: ubuntu-latest
+    runs-on: lameduse-runners
     steps:
       - name: Follow user
         uses: okp4/follow-contributor-action@v1.0.0

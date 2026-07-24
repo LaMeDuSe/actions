@@ -19,7 +19,7 @@ on:
         required: false
         type: string
         description: 'JSON array of directories to build from. Defaults to ["."].'
-        default: '["."] '
+        default: '["."]'
 
     # vars:
     #   LAMEDUSE_REGISTRY:
@@ -36,7 +36,7 @@ concurrency:
 
 jobs:
   build-and-push-image:
-    runs-on: ubuntu-latest
+    runs-on: lameduse-runners
     strategy:
       fail-fast: false
       matrix:

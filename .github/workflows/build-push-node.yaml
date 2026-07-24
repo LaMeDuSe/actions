@@ -24,7 +24,7 @@ concurrency:
 
 jobs:
   publish-npm-package:
-    runs-on: ubuntu-latest
+    runs-on: lameduse-runners
     strategy:
       matrix:
         registry:

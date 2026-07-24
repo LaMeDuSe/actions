@@ -5,7 +5,7 @@ on:
 
 jobs:
   check_perms:
-    runs-on: ubuntu-latest
+    runs-on: lameduse-runners
     steps:
       - name: Check if organization member
         id: is_organization_member
@@ -38,7 +38,7 @@ jobs:
       - check_perms
       - lint
       - build
-    runs-on: ubuntu-latest
+    runs-on: lameduse-runners
     steps:
       - uses: actions/setup-node@v3
         with:

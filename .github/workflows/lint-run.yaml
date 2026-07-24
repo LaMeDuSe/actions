@@ -24,7 +24,7 @@ jobs:
     secrets: inherit
   status-check:
     name: Lint
-    runs-on: ubuntu-latest
+    runs-on: lameduse-runners
     needs:
       - lint
     if: success()
